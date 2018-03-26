@@ -1,6 +1,7 @@
 package edu.css.thauck.unit9menus;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -111,18 +112,39 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_addMate) {
+            Snackbar.make(getWindow().getDecorView(), "Add study mates not implemented yet.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return true;
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_deleteMate) {
+            Snackbar.make(getWindow().getDecorView(), "Add study mates not implemented yet.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return true;
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_adjustSettings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_emailMate) {
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse("mailto:"));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Hello!");
+            if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(emailIntent);
+            }
+            return true;
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_textMate) {
+            Intent textIntent = new Intent();
+            textIntent.setAction(Intent.ACTION_SENDTO);
+            textIntent.setData(Uri.parse("smsto:"));
+            textIntent.putExtra("sms_body", "How's the studying going?");
+            if (textIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(textIntent);
+            }
+            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
